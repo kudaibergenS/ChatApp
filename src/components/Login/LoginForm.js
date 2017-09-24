@@ -10,11 +10,20 @@ export default class LoginForm extends Component {
                 <TextInput 
                     placeholder="Username..."
                     placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.passwordInput.focus()}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoCorrect={false}
                     style={styles.textInput} />
                 <TextInput                     
                     placeholder="Password..."
                     placeholderTextColor="rgba(255, 255, 255, 0.5)"
                     secureTextEntry
+                    returnKeyType="go"
+                    ref={(input) => this.passwordInput = input}                    
+                    autoCapitalize="none"
+                    autoCorrect={false}
                     style={styles.textInput} />
                 <TouchableOpacity style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>SIGN IN</Text>
