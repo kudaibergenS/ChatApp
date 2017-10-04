@@ -1,7 +1,48 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 
+var base64 = require('base-64');
+
 export default class LoginForm extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            username: '',
+            password: '',
+            authorized: ''
+        };
+    }
+
+    login = () => {
+        fetch('http://192.168.1.77:8080/user/auth/get', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + base64.encode(this.state.username + ':' + this.state.password)
+            }
+        })
+        .then((response) => {
+            if (response.status === 200){
+                response.json()
+                .then((user) => {
+                    console.log(user.id + ' ' + user.login);
+
+                    this.props.navigator.push({
+                        id: 'contacts',
+                        user: user
+                    });                    
+                }); 
+
+            } else {
+                return;
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     render(){
 
@@ -15,7 +56,8 @@ export default class LoginForm extends Component {
                     keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    style={styles.textInput} />
+                    style={styles.textInput}
+                    onChangeText={(username) => this.setState({username})} />
                 <TextInput                     
                     placeholder="Password..."
                     placeholderTextColor="rgba(255, 255, 255, 0.5)"
@@ -24,8 +66,11 @@ export default class LoginForm extends Component {
                     ref={(input) => this.passwordInput = input}                    
                     autoCapitalize="none"
                     autoCorrect={false}
-                    style={styles.textInput} />
-                <TouchableOpacity style={styles.buttonContainer}>
+                    style={styles.textInput}
+                    onChangeText={(password) => this.setState({password})} />
+                <TouchableOpacity 
+                    style={styles.buttonContainer}
+                    onPress={this.login}>
                     <Text style={styles.buttonText}>SIGN IN</Text>
                 </TouchableOpacity>
             </View>            

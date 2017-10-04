@@ -24,7 +24,7 @@ export default class ChatApp extends Component {
         return (<Login navigator={navigator} />);
 
       case 'contacts':
-        return <Contacts navigator={navigator} />;
+        return <Contacts user={route.user} navigator={navigator} />;
 
     }
 
@@ -35,7 +35,7 @@ export default class ChatApp extends Component {
       <NavigationExperimenal.Navigator
         initialRoute = {
           {
-            id: 'contacts'
+            id: 'login'
           }
         }
         renderScene={this.renderScene}

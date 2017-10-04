@@ -22,24 +22,18 @@ export default class Contacts extends Component {
   }
 
   componentDidMount(){
-    /*
-    fetch("http://192.168.1.77:8080/user/testPost", {
-      method: 'POST',
-       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstParam: 'yourValue',
-        secondParam: 'yourOtherValue',
-      })
-    });*/
-
-    this.fetchUsers();
+    
+    //this.fetchUsers();
   }
-
+  /*
   fetchUsers(){
-    fetch('http://192.168.1.77:8080/user/test')
+        fetch('http://192.168.1.77:8080/user/test', {
+          headers: {
+            'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + this.props.user.login + ':' + this.props.user.login.password
+          }
+        })
         .then((response) => response.json())
         .then((response) => {
 
@@ -51,6 +45,7 @@ export default class Contacts extends Component {
           
         })
   }
+  */
 
   renderRow(user, sectionId, rowId, highlightRow){
     
@@ -64,12 +59,13 @@ export default class Contacts extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
+        {/* 
         <ListView 
           dataSource={this.state.userDataSource}
           renderRow={this.renderRow.bind(this)}
         />
-
+        */}
+        
         <ActionButton buttonColor="rgba(231,76,60,1)">
           
           <ActionButton.Item 
