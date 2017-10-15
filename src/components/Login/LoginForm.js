@@ -10,7 +10,7 @@ export default class LoginForm extends Component {
         this.state = {
             username: '',
             password: '',
-            authorized: ''
+            showError: false
         };
     }
 
@@ -36,6 +36,9 @@ export default class LoginForm extends Component {
                 }); 
 
             } else {
+                this.setState({
+                    showError: true
+                });
                 return;
             }
         })
@@ -45,9 +48,11 @@ export default class LoginForm extends Component {
     }
 
     render(){
+        let errorText = this.state.showError ? 'Incorrect login or password' : '';
 
         return (
             <View style={styles.container}>
+                <Text style={styles.errorText}>{errorText}</Text>
                 <TextInput 
                     placeholder="Username..."
                     placeholderTextColor="rgba(255, 255, 255, 0.5)"
@@ -100,5 +105,11 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: '#ffffff',
       fontWeight: '700'
+  },
+  errorText: {
+      color: "#FF2F2F",
+      textAlign: 'center',
+      marginBottom: 10,
+      fontSize: 16
   }
 });

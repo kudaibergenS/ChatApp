@@ -12,8 +12,8 @@ export default class Login extends Component {
                 <View style={styles.logoContainer}>                    
                     <Image 
                         style={styles.logo}
-                        source={require('../../resources/images/octocat.png')} />
-                        <Text style={styles.title}>An app made for github using React Native</Text>
+                        source={require('../../resources/images/logo.png')} />
+                        <Text style={styles.title}>ChatApp</Text>
                 </View> 
                 
                 <View style={styles.formContainer}>                    
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3498db'
+        //backgroundColor: '#3498db'
     },
     logoContainer: {
         flexGrow: 1,
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: 160,
         textAlign: 'center',
-        opacity: 0.8
+        opacity: 0.8,
+        fontSize: 25
     }
 });

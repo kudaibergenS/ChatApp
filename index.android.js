@@ -15,6 +15,7 @@ import NavigationExperimenal from "react-native-deprecated-custom-components";
 
 import Login from './src/components/Login/Login'
 import Contacts from './src/components/Contacts/Contacts'
+import Chatroom from './src/components/Chatroom/Chatroom'
 
 export default class ChatApp extends Component {
   
@@ -26,6 +27,9 @@ export default class ChatApp extends Component {
       case 'contacts':
         return <Contacts user={route.user} navigator={navigator} />;
 
+      case 'chatroom':
+        return <Chatroom user={route.user} contact={route.contact} navigator={navigator} />;
+
     }
 
   }
@@ -35,11 +39,11 @@ export default class ChatApp extends Component {
       <NavigationExperimenal.Navigator
         initialRoute = {
           {
-            id: 'login'
+            id: "login"
           }
         }
         renderScene={this.renderScene}
-        configureScene={(route, routeStack) => NavigationExperimenal.Navigator.SceneConfigs.FloatFromBottom}
+        configureScene={(route, routeStack) => NavigationExperimenal.Navigator.SceneConfigs.FloatFromRight}
       />
     );
   }
